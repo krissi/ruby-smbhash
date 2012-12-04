@@ -32,4 +32,10 @@ class SambaEncryptTest < Test::Unit::TestCase
     assert_equal("8846F7EAEE8FB117AD06BDD830B7586C",
                  Samba::Encrypt.ntlm_hash("password"))
   end
+
+  def test_ntlmgen 
+    assert_equal(["E52CAC67419A9A224A3B108F3FA6CB6D", "8846F7EAEE8FB117AD06BDD830B7586C"], 
+                 Samba::Encrypt.ntlmgen("password"))
+  end
+
 end

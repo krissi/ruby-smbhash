@@ -27,6 +27,13 @@ module Samba
       hex
     end
 
+    def ntlmgen(password, encoding=nil)    
+      [
+        lm_hash(password, encoding),
+        ntlm_hash(password, encoding)
+      ]
+    end
+
     module Private
       module_function
       def convert_encoding(to, from, str)
