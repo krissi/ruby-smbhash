@@ -15,6 +15,4 @@ ruby-smbhash is a implementation of lanman and nt md4 hash functions for use in 
     Samba::Encrypt.ntlmgen    "password"
     => ["E52CAC67419A9A224A3B108F3FA6CB6D", "8846F7EAEE8FB117AD06BDD830B7586C"]
 
-## Issues
- * Not working with Ruby 1.9
-
+Now works in Ruby 1.9

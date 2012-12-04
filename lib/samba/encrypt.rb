@@ -27,7 +27,7 @@ module Samba
       hex
     end
 
-    def ntlmgen(password, encoding=nil)
+    def ntlmgen(password, encoding=nil)    
       [
         lm_hash(password, encoding),
         ntlm_hash(password, encoding)
@@ -57,17 +57,17 @@ module Samba
 
       def str_to_key(str)
         key = "\000" * 8
-        key[0] = str[0] >> 1;
-        key[1] = ((str[0] & 0x01) << 6) | (str[1] >> 2);
-        key[2] = ((str[1] & 0x03) << 5) | (str[2] >> 3);
-        key[3] = ((str[2] & 0x07) << 4) | (str[3] >> 4);
-        key[4] = ((str[3] & 0x0F) << 3) | (str[4] >> 5);
-        key[5] = ((str[4] & 0x1F) << 2) | (str[5] >> 6);
-        key[6] = ((str[5] & 0x3F) << 1) | (str[6] >> 7);
-        key[7] = str[6] & 0x7F;
+        key.setbyte(0,  str.getbyte(0) >> 1);
+        key.setbyte(1,  ((str.getbyte(0) & 0x01) << 6) | (str.getbyte(1) >> 2));
+        key.setbyte(2,  ((str.getbyte(1) & 0x03) << 5) | (str.getbyte(2) >> 3));
+        key.setbyte(3,  ((str.getbyte(2) & 0x07) << 4) | (str.getbyte(3) >> 4));
+        key.setbyte(4,  ((str.getbyte(3) & 0x0F) << 3) | (str.getbyte(4) >> 5));
+        key.setbyte(5,  ((str.getbyte(4) & 0x1F) << 2) | (str.getbyte(5) >> 6));
+        key.setbyte(6,  ((str.getbyte(5) & 0x3F) << 1) | (str.getbyte(6) >> 7));
+        key.setbyte(7,  str.getbyte(6) & 0x7F);
 
         key.size.times do |i|
-          key[i] = (key[i] << 1);
+          key.setbyte(i, (key.getbyte(i) << 1));
         end
 
         key
@@ -86,7 +86,7 @@ module Samba
         raise ArgumentError.new("must be <= 14 characters") if chars.size > 14
         chars = chars.to_s.ljust(14, "\000")
         des_crypt56(LM_MAGIC, chars[0, 7], true) +
-          des_crypt56(LM_MAGIC, chars[7, 7], true)
+            des_crypt56(LM_MAGIC, chars[7, 7], true)
       end
     end
   end
