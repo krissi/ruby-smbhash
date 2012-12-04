@@ -2,7 +2,7 @@ require 'test/unit'
 
 require 'stringio'
 
-#require 'samba/encrypt'
+require 'samba/encrypt'
 
 class SambaEncryptTest < Test::Unit::TestCase
   def test_lm_hash
