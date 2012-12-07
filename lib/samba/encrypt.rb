@@ -36,6 +36,17 @@ module Samba
 
     module Private
       module_function
+
+      if /^1\.9/ =~ RUBY_VERSION
+        require "samba/builder19"
+        Builder = Builder19
+      elsif /^1\.8/ =~ RUBY_VERSION
+        require "samba/builder18"
+        Builder = Builder18
+      else
+        raise NotImplementedError
+      end
+
       def convert_encoding(to, from, str)
         if same_encoding?(to, from)
           str
@@ -55,26 +66,8 @@ module Samba
         na == nb or na.gsub(/_/, '') == nb.gsub(/_/, '')
       end
 
-      def str_to_key(str)
-        key = "\000" * 8
-        key.setbyte(0,  str.getbyte(0) >> 1);
-        key.setbyte(1,  ((str.getbyte(0) & 0x01) << 6) | (str.getbyte(1) >> 2));
-        key.setbyte(2,  ((str.getbyte(1) & 0x03) << 5) | (str.getbyte(2) >> 3));
-        key.setbyte(3,  ((str.getbyte(2) & 0x07) << 4) | (str.getbyte(3) >> 4));
-        key.setbyte(4,  ((str.getbyte(3) & 0x0F) << 3) | (str.getbyte(4) >> 5));
-        key.setbyte(5,  ((str.getbyte(4) & 0x1F) << 2) | (str.getbyte(5) >> 6));
-        key.setbyte(6,  ((str.getbyte(5) & 0x3F) << 1) | (str.getbyte(6) >> 7));
-        key.setbyte(7,  str.getbyte(6) & 0x7F);
-
-        key.size.times do |i|
-          key.setbyte(i, (key.getbyte(i) << 1));
-        end
-
-        key
-      end
-
       def des_crypt56(input, key_str, forward_only)
-        key = str_to_key(key_str)
+        key = Builder::str_to_key(key_str)
         encoder = OpenSSL::Cipher::DES.new
         encoder.encrypt
         encoder.key = key
