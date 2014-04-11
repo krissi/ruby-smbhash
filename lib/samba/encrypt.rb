@@ -17,11 +17,11 @@ module Samba
     end
 
     def ntlm_hash(password, encoding=nil)
-      ucs2_password = Private.convert_encoding("UCS-2",
+      ucs2_password = Private.convert_encoding("UTF-16LE",
                                                encoding || "UTF-8",
                                                password)
       if ucs2_password.size > 256
-        raise ArgumentError.new("must be <= 256 characters in UCS-2")
+        raise ArgumentError.new("must be <= 256 characters in UTF-16LE")
       end
       hex = OpenSSL::Digest::MD4.new(ucs2_password).hexdigest.upcase
       hex
@@ -37,23 +37,15 @@ module Samba
     module Private
       module_function
 
-      if /^1\.9/ =~ RUBY_VERSION
-        require "samba/builder19"
-        Builder = Builder19
-      elsif /^1\.8/ =~ RUBY_VERSION
-        require "samba/builder18"
-        Builder = Builder18
+      case RUBY_VERSION
+      when /^1\.9/, /^2/
+        require "samba/methods19"
+        extend Methods19
+      when /^1\.8/
+        require "samba/methods18"
+        extend Methods18
       else
-        raise NotImplementedError
-      end
-
-      def convert_encoding(to, from, str)
-        if same_encoding?(to, from)
-          str
-        else
-          require 'iconv'
-          Iconv.iconv(to, from, str).join
-        end
+        raise NotImplementedError, "Ruby #{RUBY_VERSION} is not supported"
       end
 
       def normalize_encoding(encoding)
@@ -67,7 +59,7 @@ module Samba
       end
 
       def des_crypt56(input, key_str, forward_only)
-        key = Builder::str_to_key(key_str)
+        key = str_to_key(key_str)
         encoder = OpenSSL::Cipher::DES.new
         encoder.encrypt
         encoder.key = key

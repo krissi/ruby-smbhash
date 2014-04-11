@@ -1,8 +1,6 @@
 module Samba
   module Encrypt
-    module Builder19
-      module_function
-
+    module Methods19
       def str_to_key(str)
         key = "\000" * 8
         key.setbyte(0,  str.getbyte(0) >> 1);
@@ -19,6 +17,14 @@ module Samba
         end
 
         key
+      end
+
+      def convert_encoding(to, from, str)
+        if same_encoding?(to, from)
+          str
+        else
+          str.encode(to, from)
+        end
       end
     end
   end

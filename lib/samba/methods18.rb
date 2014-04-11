@@ -1,7 +1,7 @@
 module Samba
   module Encrypt
-    module Builder18
-      module_function
+    module Methods18
+      require 'iconv'
 
       def str_to_key(str)
         key = "\000" * 8
@@ -20,6 +20,15 @@ module Samba
 
         key
       end
+
+      def convert_encoding(to, from, str)
+        if same_encoding?(to, from)
+          str
+        else
+          Iconv.iconv(to, from, str).join
+        end
+      end
+
     end
   end
 end
