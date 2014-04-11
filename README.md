@@ -4,6 +4,13 @@
 ## Description
 ruby-smbhash is a implementation of lanman and nt md4 hash functions for use in Samba style smbpasswd entries. It was stripped from ActiveSambaLDAP (http://asl.rubyforge.org/activesambaldap/)
 
+## Tested Ruby Versions
+  * MRI 1.8.6
+  * MRI 1.9.2
+  * MRI 1.9.3
+  * MRI 2.0.0
+  * MRI 2.1.1
+
 ## Usage
     require 'samba/encrypt'
 
