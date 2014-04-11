@@ -1,4 +1,5 @@
 language: ruby
+script: rake test
 rvm:
   - ruby-head
   - mruby-head
