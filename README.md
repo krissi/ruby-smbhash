@@ -16,13 +16,13 @@ ruby-smbhash is a implementation of lanman and nt md4 hash functions for use in 
     require 'smbhash'
 
     Smbhash.lm_hash    "password"
-    => "E52CAC67419A9A224A3B108F3FA6CB6D"
+    # => "E52CAC67419A9A224A3B108F3FA6CB6D"
 
     Smbhash.ntlm_hash  "password"
-    => "8846F7EAEE8FB117AD06BDD830B7586C"
+    # => "8846F7EAEE8FB117AD06BDD830B7586C"
 
     Smbhash.ntlmgen    "password"
-    => ["E52CAC67419A9A224A3B108F3FA6CB6D", "8846F7EAEE8FB117AD06BDD830B7586C"]
+    # => ["E52CAC67419A9A224A3B108F3FA6CB6D", "8846F7EAEE8FB117AD06BDD830B7586C"]
 
 ## Credits
   * ActiveSambaLDAP project for sharing the code
