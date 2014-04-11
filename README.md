@@ -1,4 +1,5 @@
 # ruby-smbhash
+[![Build Status](https://travis-ci.org/krissi/ruby-smbhash.svg?branch=master)](https://travis-ci.org/krissi/ruby-smbhash)
 
 ## Description
 ruby-smbhash is a implementation of lanman and nt md4 hash functions for use in Samba style smbpasswd entries. It was stripped from ActiveSambaLDAP (http://asl.rubyforge.org/activesambaldap/)
