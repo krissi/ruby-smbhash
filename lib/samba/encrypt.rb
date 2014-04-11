@@ -39,21 +39,13 @@ module Samba
 
       case RUBY_VERSION
       when /^1\.9/, /^2/
-        require "samba/builder19"
-        Builder = Builder19
+        require "samba/methods19"
+        extend Methods19
       when /^1\.8/
-        require "samba/builder18"
-        Builder = Builder18
+        require "samba/methods18"
+        extend Methods18
       else
         raise NotImplementedError, "Ruby #{RUBY_VERSION} is not supported"
-      end
-
-      def convert_encoding(to, from, str)
-        if same_encoding?(to, from)
-          str
-        else
-          str.encode(to, from)
-        end
       end
 
       def normalize_encoding(encoding)
@@ -67,7 +59,7 @@ module Samba
       end
 
       def des_crypt56(input, key_str, forward_only)
-        key = Builder::str_to_key(key_str)
+        key = str_to_key(key_str)
         encoder = OpenSSL::Cipher::DES.new
         encoder.encrypt
         encoder.key = key
