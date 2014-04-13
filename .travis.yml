@@ -1,5 +1,5 @@
 language: ruby
-script: rake test
+script: rake spec
 rvm:
   - ruby-head
   - 2.1.1
