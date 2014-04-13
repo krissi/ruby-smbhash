@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'smbhash'
-  s.version     = '1.0.0'
+  s.version     = '1.0.1'
   s.license     = 'MIT'
   s.summary     = "Lanman/NT hash generator"
   s.description = "An implementation of lanman and nt md4 hash functions for use in Samba style smbpasswd entries"
@@ -16,4 +16,5 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 1.8.7'
 
   s.add_development_dependency "rake"
+  s.add_development_dependency "rspec"
 end
