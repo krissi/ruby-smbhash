@@ -6,7 +6,7 @@ module Smbhash
     dos_password = Private.convert_encoding("ISO-8859-1",
                                             encoding || "UTF-8",
                                             password.upcase)
-    fail ArgumentError, 'Password must be > 14 characters in ISO-8859-1' if dos_password.size > 14
+    fail ArgumentError, 'Password must be < 14 characters in ISO-8859-1' if dos_password.size > 14
 
     Private.encrypt_14characters(dos_password).unpack("C*").collect do |char|
       "%02X" % char
@@ -18,7 +18,7 @@ module Smbhash
                                              encoding || "UTF-8",
                                              password)
 
-    fail ArgumentError, 'Password must be > 255 characters in UTF-16LE' if ucs2_password.size > 255
+    fail ArgumentError, 'Password must be < 255 characters in UTF-16LE' if ucs2_password.size > 255
 
     hex = OpenSSL::Digest::MD4.new(ucs2_password).hexdigest.upcase
     hex
