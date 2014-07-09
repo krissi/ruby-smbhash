@@ -3,8 +3,8 @@ Bundler.require
 
 #helpers Sinatra::Jsonp
 
-get '/' do
-  'hi'
+not_found do
+  redirect to 'https://krissi.github.io/ruby-smbhash/'
 end
 
 get '/hash/:password' do
