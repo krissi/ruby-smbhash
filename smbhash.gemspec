@@ -1,11 +1,11 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'smbhash'
-  s.version     = '1.0.1'
+  s.version     = '1.0.2'
   s.license     = 'MIT'
   s.summary     = "Lanman/NT hash generator"
   s.description = "An implementation of lanman and nt md4 hash functions for use in Samba style smbpasswd entries"
-  s.homepage    = 'https://github.com/krissi/ruby-smbhash'
+  s.homepage    = 'https://krissi.github.io/ruby-smbhash/'
   s.author      = 'Christian Haase'
 
   s.files = `git ls-files`.split($/)
