@@ -10,10 +10,14 @@
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="javascripts/main.js"></script>
     <title>Ruby-smbhash by krissi</title>
   </head>
 
   <body>
+    <a href="https://github.com/krissi/ruby-smbhash"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+
     <div id="container">
       <div class="inner">
 
@@ -21,12 +25,6 @@
           <h1>Ruby-smbhash</h1>
           <h2>An implementation of lanman and nt md4 hash functions for use in Samba style smbpasswd entries</h2>
         </header>
-
-        <section id="downloads" class="clearfix">
-          <a href="https://github.com/krissi/ruby-smbhash/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
-          <a href="https://github.com/krissi/ruby-smbhash/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
-          <a href="https://github.com/krissi/ruby-smbhash" id="view-on-github" class="button"><span>View on GitHub</span></a>
-        </section>
 
         <hr>
 
@@ -41,6 +39,20 @@
 <a name="description" class="anchor" href="#description"><span class="octicon octicon-link"></span></a>Description</h2>
 
 <p>ruby-smbhash is a implementation of lanman and nt md4 hash functions for use in Samba style smbpasswd entries. It was stripped from ActiveSambaLDAP (<a href="http://asl.rubyforge.org/activesambaldap/">http://asl.rubyforge.org/activesambaldap/</a>)</p>
+
+<h2>
+<a name="test-online" class="anchor" href="#test-online"><span class="octicon octicon-link"></span></a>Test online</h2>
+<form action="#" onsubmit="submit_password(); return false">
+  <label for="password">Password:</label>
+  <input type="text" id="password" required="required" />
+  <input type="submit" value="Generate">
+
+  <label for="lm_hash">LM Hash:</label>
+  <input type="text" id="lm_hash" readonly="readonly" />
+
+  <label for="ntlm_hash">NTLM Hash:</label>
+  <input type="text" id="ntlm_hash" readonly="readonly" />
+</form>
 
 <h2>
 <a name="tested-ruby-versions" class="anchor" href="#tested-ruby-versions"><span class="octicon octicon-link"></span></a>Tested Ruby Versions</h2>
