@@ -19,3 +19,6 @@ get '/hash/:password' do
   jsonp(result, callback.to_sym)
 end
 
+get '/wake_up' do
+  ''
+end
