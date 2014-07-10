@@ -4,7 +4,7 @@ function submit_password() {
 
   console.log(password);
   if(password != null) {
-    do_query(password);
+    generate_hashes(password);
   }
 }
 
@@ -17,19 +17,31 @@ function get_password_from_form() {
   return null;
 }
 
-function do_query(password) {
+function do_query(path, callback) {
   $.ajax({
-    url: "https://smbhash-service.herokuapp.com/hash/" + password,
+    url: "https://smbhash-service.herokuapp.com/" + path,
     jsonp: "callback",
     dataType: "jsonp",
-    success: function( response ) {
+    success: callback,
+  });
+}
+
+function wake_up() {
+  do_query('wake_up', function() {});
+}
+
+function generate_hashes(password) {
+  do_query('hash/' + password,
+    function( response ) {
       update_results_in_form(response.lm_hash, response.ntlm_hash);
     }
-  });
+  );
 }
 
 function update_results_in_form(lm_hash, ntlm_hash) {
   $('#lm_hash').val(lm_hash);
   $('#ntlm_hash').val(ntlm_hash);
 }
+
+window.setTimeout('wake_up();', 10);
 
