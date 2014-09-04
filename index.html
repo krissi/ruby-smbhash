@@ -13,6 +13,12 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="javascripts/main.js"></script>
     <title>Ruby-smbhash by krissi</title>
+
+    <style>
+      input {
+        width: 100%;
+      }
+    </style>
   </head>
 
   <body>
@@ -44,15 +50,23 @@
 <a name="test-online" class="anchor" href="#test-online"><span class="octicon octicon-link"></span></a>Test online</h2>
 <a href='https://gemnasium.com/krissi/ruby-smbhash'><img src="https://gemnasium.com/krissi/ruby-smbhash.svg" alt="Dependency Status" /></a>
 <form action="#" onsubmit="submit_password(); return false">
-  <label for="password">Password:</label>
-  <input type="text" id="password" required="required" />
-  <input type="submit" value="Generate">
+  <table>
+    <tr>
+      <th><label for="password">Password:</label></th>
+      <td><input type="text" id="password" required="required" /></td>
+      <td><input type="submit" value="Generate"></td>
+    </tr>
 
-  <label for="lm_hash">LM Hash:</label>
-  <input type="text" id="lm_hash" readonly="readonly" />
+    <tr>
+      <th><label for="lm_hash">LM Hash:</label></th>
+      <td colspan="2"><input type="text" id="lm_hash" readonly="readonly" /></td>
+    </tr>
 
-  <label for="ntlm_hash">NTLM Hash:</label>
-  <input type="text" id="ntlm_hash" readonly="readonly" />
+    <tr>
+      <th><label for="ntlm_hash">NTLM Hash:</label></th>
+      <td colspan="2"><input type="text" id="ntlm_hash" readonly="readonly" /></td>
+    </tr>
+  </table>
 </form>
 
 <h2>
