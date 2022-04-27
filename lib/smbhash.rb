@@ -35,7 +35,7 @@ module Smbhash
     module_function
 
     case RUBY_VERSION
-    when /^1\.9/, /^2/
+    when /^1\.9/, /^2/, /^3\.1/
       require "smbhash/methods19"
       extend Methods19
     when /^1\.8/

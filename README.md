@@ -11,6 +11,7 @@ ruby-smbhash is a implementation of lanman and nt md4 hash functions for use in 
   * MRI 1.9.3
   * MRI 2.0.0
   * MRI 2.1.1
+  * MRI 3.1.2
 
 ## Usage
     require 'smbhash'
