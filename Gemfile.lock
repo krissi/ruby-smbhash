@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    smbhash (1.0.2)
+    smbhash (1.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -24,3 +24,6 @@ DEPENDENCIES
   rake
   rspec (~> 2.14)
   smbhash!
+
+BUNDLED WITH
+   2.1.4
